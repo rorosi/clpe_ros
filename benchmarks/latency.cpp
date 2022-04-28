@@ -40,7 +40,7 @@ int main(int argc, char * argv[])
   using sensor_msgs::msg::Image;
   for (int i = 0; i < cam_count; ++i) {
     subs[i] = node->create_subscription<Image>(
-      "cam_" + std::to_string(i) + "/image_raw", rclcpp::SystemDefaultsQoS(),
+      "clpe/cam_" + std::to_string(i) + "/image_raw", rclcpp::SystemDefaultsQoS(),
       [i, &node, &cam_sub_count, &avg_latencies](const Image::SharedPtr image) {
         const auto local_time = node->get_clock()->now().nanoseconds();
         const auto cam_time = rclcpp::Time(image->header.stamp).nanoseconds();
